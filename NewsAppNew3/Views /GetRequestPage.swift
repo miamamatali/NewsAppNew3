@@ -23,6 +23,8 @@ class GetRequestPage: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupConstraints()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(goToNext))
+        
     }
 
     func setupTableView() {
@@ -37,6 +39,9 @@ class GetRequestPage: UIViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    @objc private func goToNext() {
+        navigationController?.pushViewController(PostRequestPage(), animated: true)
     }
 }
 

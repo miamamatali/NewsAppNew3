@@ -48,22 +48,26 @@ class ViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(30)
             make.height.equalTo(40)
         }
+        
+        
     }
     @objc private func getRequest(sender: UIButton) {
         APIManager.shared.getData { [weak self] result in
             switch result {
             case .success(let data):
-    
-            DispatchQueue.main.async {
-                let vc = GetRequestPage()
-                vc.timeData = data.products ?? []
-                self?.navigationController?.pushViewController(vc, animated: true)
-            }
+                
+                DispatchQueue.main.async {
+                    let vc = GetRequestPage()
+                    vc.timeData = data.products ?? []
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
             case .failure(let error):
-            print(error.localizedDescription)
+                print(error.localizedDescription)
             }
         }
     }
+    
+    
     @objc private func postRequest(sender: UIButton) {
         navigationController?.pushViewController(PostRequestPage(), animated: true)
     }
